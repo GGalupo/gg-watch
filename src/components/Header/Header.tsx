@@ -1,3 +1,9 @@
+import { Logo } from "..";
+
 export const Header = () => {
-  return <h1>Header</h1>;
+  return (
+    <header className="flex py-5 justify-center items-center">
+      <Logo />
+    </header>
+  );
 };
