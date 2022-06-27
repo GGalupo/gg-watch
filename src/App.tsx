@@ -1,5 +1,7 @@
+import { Event } from "./pages";
+
 const App = () => {
-  return <h1>App</h1>;
+  return <Event />;
 };
 
 export default App;

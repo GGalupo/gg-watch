@@ -1,3 +1,5 @@
+import { Header } from "../../components";
+
 export const Event = () => {
-  return <h1>Event</h1>;
+  return <Header />;
 };
