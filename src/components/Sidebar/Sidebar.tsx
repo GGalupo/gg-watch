@@ -1,6 +1,23 @@
+import { gql, useQuery } from "@apollo/client";
+
 import { Lesson } from "..";
 
+const GET_LESSONS_QUERY = gql`
+  query {
+    lessons(orderBy: availableAt_ASC, stage: PUBLISHED) {
+      id
+      availableAt
+      lessonType
+      title
+      slug
+    }
+  }
+`;
+
 export const Sidebar = () => {
+  const { data } = useQuery(GET_LESSONS_QUERY);
+  console.log(data);
+
   return (
     <aside className="w-[22rem] bg-gray-700 p-6 border-l border-gray-600">
       <h3 className="font-bold text-2xl pb-6 mb-6 border-b border-gray-500">

@@ -1,3 +1,3 @@
 export const Logo = () => {
-  return <h2 className="text-4xl font-bold">GG Watch</h2>;
+  return <h2 className="text-3xl font-bold">GG Watch</h2>;
 };
