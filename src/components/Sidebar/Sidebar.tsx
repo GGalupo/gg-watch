@@ -8,12 +8,17 @@ export const Sidebar = () => {
       </h3>
 
       <div className="flex flex-col gap-8">
+        <Lesson
+          title="Lesson 01"
+          slug="lesson-1"
+          availableAt={new Date()}
+          type="live"
+        />
+        {/* <Lesson />
         <Lesson />
         <Lesson />
         <Lesson />
-        <Lesson />
-        <Lesson />
-        <Lesson />
+        <Lesson /> */}
       </div>
     </aside>
   );
