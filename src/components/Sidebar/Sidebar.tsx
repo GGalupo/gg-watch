@@ -14,8 +14,18 @@ const GET_LESSONS_QUERY = gql`
   }
 `;
 
+interface GetLessonsQueryResponse {
+  lessons: {
+    id: string;
+    title: string;
+    slug: string;
+    availableAt: string;
+    lessonType: "live" | "class";
+  }[];
+}
+
 export const Sidebar = () => {
-  const { data } = useQuery(GET_LESSONS_QUERY);
+  const { data } = useQuery<GetLessonsQueryResponse>(GET_LESSONS_QUERY);
   console.log(data);
 
   return (
@@ -25,17 +35,15 @@ export const Sidebar = () => {
       </h3>
 
       <div className="flex flex-col gap-8">
-        <Lesson
-          title="Lesson 01"
-          slug="lesson-1"
-          availableAt={new Date()}
-          type="live"
-        />
-        {/* <Lesson />
-        <Lesson />
-        <Lesson />
-        <Lesson />
-        <Lesson /> */}
+        {data?.lessons.map((lesson) => (
+          <Lesson
+            key={lesson.slug}
+            title={lesson.title}
+            slug={lesson.slug}
+            availableAt={new Date(lesson.availableAt)}
+            type={lesson.lessonType}
+          />
+        ))}
       </div>
     </aside>
   );

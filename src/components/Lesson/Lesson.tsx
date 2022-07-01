@@ -1,14 +1,15 @@
 import { CheckCircle, Lock } from "phosphor-react";
+import { isPast } from "date-fns";
 
 interface LessonProps {
   title: string;
   slug: string;
   availableAt: Date;
-  type: "live" | "recorded";
+  type: "live" | "class";
 }
 
 export const Lesson = ({ title, slug, availableAt, type }: LessonProps) => {
-  const isLessonAvailable = false;
+  const isLessonAvailable = isPast(availableAt);
 
   return (
     <a href="#">
