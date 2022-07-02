@@ -7,6 +7,7 @@ export const Router = () => {
     <Routes>
       <Route path="/" element={<h1>Home</h1>} />
       <Route path="/lessons" element={<Event />} />
+      <Route path="/lessons/:slug" element={<Event />} />
     </Routes>
   );
 };

@@ -9,7 +9,11 @@ import {
 
 import "@vime/core/themes/default.css";
 
-export const Video = () => {
+interface VideoProps {
+  lessonSlug: string;
+}
+
+export const Video = ({ lessonSlug }: VideoProps) => {
   return (
     <div className="flex-1">
       <div className="flex justify-center bg-black">
