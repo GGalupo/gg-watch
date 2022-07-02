@@ -1,4 +1,10 @@
-import { DiscordLogo, Lightning } from "phosphor-react";
+import {
+  CaretRight,
+  DiscordLogo,
+  FileArrowDown,
+  Image,
+  Lightning,
+} from "phosphor-react";
 
 export const Video = () => {
   return (
@@ -53,7 +59,45 @@ export const Video = () => {
             </a>
           </div>
         </div>
-        <div></div>
+
+        <div className="grid grid-cols-2 gap-8 mt-20">
+          <a
+            href="#"
+            className="bg-gray-700 rounded overflow-hidden flex gap-6 hover:bg-gray-600 transition-colors"
+          >
+            <div className="bg-green-700 h-full p-6 flex items-center">
+              <FileArrowDown size={40} />
+            </div>
+            <div className="py-6 leading-relaxed">
+              <strong className="text-2xl">Lesson files</strong>
+              <p className="text-sm text-gray-200 mt-2">
+                Get the documents and exercises from this lesson to improve your
+                knowledge
+              </p>
+            </div>
+            <div className="h-full p-6 flex items-center">
+              <CaretRight size={24} />
+            </div>
+          </a>
+
+          <a
+            href="#"
+            className="bg-gray-700 rounded overflow-hidden flex gap-6 hover:bg-gray-600 transition-colors"
+          >
+            <div className="bg-green-700 h-full p-6 flex items-center">
+              <Image size={40} />
+            </div>
+            <div className="py-6 leading-relaxed">
+              <strong className="text-2xl">Wallpapers</strong>
+              <p className="text-sm text-gray-200 mt-2">
+                Download beautiful wallpapers to use wherever you want
+              </p>
+            </div>
+            <div className="h-full p-6 flex items-center">
+              <CaretRight size={24} />
+            </div>
+          </a>
+        </div>
       </div>
     </div>
   );
