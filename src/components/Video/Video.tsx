@@ -11,12 +11,29 @@ export const Video = () => {
         <div className="flex items-start gap-16">
           <div className="flex-1">
             <h1 className="text-2xl font-bold">Lesson 01 - What is ReactJS</h1>
-            <p className="mt-4 text-gray-200">
+            <p className="mt-4 text-gray-200 leading-relaxed">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas
               quo explicabo magnam ipsum aut qui voluptatibus repellendus sequi
               soluta voluptatum iure eius repellat vitae cumque, pariatur
               recusandae. Repudiandae, minus distinctio.
             </p>
+
+            <div className="flex items-center gap-4 mt-6">
+              <img
+                src="https://github.com/GGalupo.png"
+                alt="Gustavo Galupo"
+                className="h-16 w-16 rounded-full border-2 border-blue-500"
+              />
+
+              <div className="leading-relaxed">
+                <strong className="font-bold text-xl block">
+                  Gustavo Galupo
+                </strong>
+                <span className="text-gray-200 text-sm block">
+                  Front-end developer
+                </span>
+              </div>
+            </div>
           </div>
           <div className="flex flex-col gap-4">
             <a
