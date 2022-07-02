@@ -16,10 +16,10 @@ export const Lesson = ({ title, slug, availableAt, type }: LessonProps) => {
   );
 
   return (
-    <a href="#">
+    <a href="#" className="group">
       <time className="text-gray-300 text-sm">{availableDateFormatted}</time>
 
-      <div className="rounded border border-gray-500 p-4 mt-2">
+      <div className="rounded border border-gray-500 p-4 mt-2 group-hover:border-green-500">
         <header className="flex items-center justify-between">
           {isLessonAvailable ? (
             <span className="flex items-center gap-2 text-sm text-blue-500 font-medium">
