@@ -39,7 +39,15 @@ export const Lesson = ({
       >
         <header className="flex items-center justify-between">
           {isLessonAvailable ? (
-            <span className="flex items-center gap-2 text-sm text-blue-500 font-medium">
+            <span
+              className={classNames(
+                "flex items-center gap-2 text-sm font-medium",
+                {
+                  "text-white": isActiveLesson,
+                  "text-blue-500": !isActiveLesson,
+                }
+              )}
+            >
               <CheckCircle size={20} />
               Watchable
             </span>
@@ -51,13 +59,28 @@ export const Lesson = ({
           )}
 
           {type === "live" && (
-            <span className="text-xs rounded px-2 py-[0.125rem] text-white border border-green-300 font-bold">
+            <span
+              className={classNames(
+                "text-xs rounded px-2 py-[0.125rem] text-white border font-bold",
+                {
+                  "border-green-300": !isActiveLesson,
+                  "border-white": isActiveLesson,
+                }
+              )}
+            >
               LIVE
             </span>
           )}
         </header>
 
-        <strong className="text-gray-200 block mt-4">{title}</strong>
+        <strong
+          className={classNames("block mt-4", {
+            "text-white": isActiveLesson,
+            "text-gray-200": !isActiveLesson,
+          })}
+        >
+          {title}
+        </strong>
       </div>
     </Link>
   );
