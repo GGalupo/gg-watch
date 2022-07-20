@@ -1,5 +1,4 @@
 import { DefaultUi, Player, Youtube } from "@vime/react";
-import { gql, useQuery } from "@apollo/client";
 import {
   CaretRight,
   DiscordLogo,
@@ -8,49 +7,20 @@ import {
   Lightning,
 } from "phosphor-react";
 
+import { useGetLessonBySlugQuery } from "../../graphql";
+
 import "@vime/core/themes/default.css";
-
-const GET_LESSON_BY_SLUG_QUERY = gql`
-  query GetLessonBySlug($slug: String) {
-    lesson(where: { slug: $slug }) {
-      title
-      description
-      videoId
-      teacher {
-        avatarURL
-        bio
-        name
-      }
-    }
-  }
-`;
-
-interface GetLessonBySlugResponse {
-  lesson: {
-    title: string;
-    videoId: string;
-    description: string;
-    teacher: {
-      bio: string;
-      avatarURL: string;
-      name: string;
-    };
-  };
-}
 
 interface VideoProps {
   lessonSlug: string;
 }
 
 export const Video = ({ lessonSlug }: VideoProps) => {
-  const { data, loading, error } = useQuery<GetLessonBySlugResponse>(
-    GET_LESSON_BY_SLUG_QUERY,
-    {
-      variables: {
-        slug: lessonSlug,
-      },
-    }
-  );
+  const { data, loading, error } = useGetLessonBySlugQuery({
+    variables: {
+      slug: lessonSlug,
+    },
+  });
 
   return (
     <div className="flex-1">
@@ -59,7 +29,8 @@ export const Video = ({ lessonSlug }: VideoProps) => {
       ) : error ? (
         <p>Error! {error.message}</p>
       ) : (
-        data && (
+        data &&
+        data?.lesson && (
           <>
             <div className="flex justify-center bg-black">
               <div className="h-full w-full max-w-[1100px] max-h-[60vh] aspect-video">
@@ -78,22 +49,24 @@ export const Video = ({ lessonSlug }: VideoProps) => {
                     {data.lesson.description}
                   </p>
 
-                  <div className="flex items-center gap-4 mt-6">
-                    <img
-                      src={data.lesson.teacher.avatarURL}
-                      alt={data.lesson.teacher.name}
-                      className="h-16 w-16 rounded-full border-2 border-blue-500"
-                    />
+                  {data.lesson.teacher && (
+                    <div className="flex items-center gap-4 mt-6">
+                      <img
+                        src={data.lesson.teacher.avatarURL}
+                        alt={data.lesson.teacher.name}
+                        className="h-16 w-16 rounded-full border-2 border-blue-500"
+                      />
 
-                    <div className="leading-relaxed">
-                      <strong className="font-bold text-xl block">
-                        {data.lesson.teacher.name}
-                      </strong>
-                      <span className="text-gray-200 text-sm block">
-                        {data.lesson.teacher.bio}
-                      </span>
+                      <div className="leading-relaxed">
+                        <strong className="font-bold text-xl block">
+                          {data.lesson.teacher.name}
+                        </strong>
+                        <span className="text-gray-200 text-sm block">
+                          {data.lesson.teacher.bio}
+                        </span>
+                      </div>
                     </div>
-                  </div>
+                  )}
                 </div>
                 <div className="flex flex-col gap-4">
                   <a
