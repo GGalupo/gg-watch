@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import { Header, Menu, Sidebar, Video } from "../../components";
@@ -12,8 +12,16 @@ export const Event = () => {
     setIsMenuOpen((prevState) => !prevState);
   };
 
+  useEffect(() => {
+    document.body.style.overflowY = isMenuOpen ? "hidden" : "auto";
+  }, [isMenuOpen]);
+
   return (
-    <div className="flex flex-col min-h-screen relative">
+    <div
+      className={`flex flex-col min-h-screen relative ${
+        isMenuOpen ? "overflow-y-hidden" : "overflow-y-auto"
+      }`}
+    >
       <Header toggleMenu={toggleMenu} />
       <Menu isMenuOpen={isMenuOpen} closeMenu={() => setIsMenuOpen(false)} />
       <main className="flex flex-1">
