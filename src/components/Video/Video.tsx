@@ -41,8 +41,8 @@ export const Video = ({ lessonSlug }: VideoProps) => {
               </div>
             </div>
 
-            <div className="p-8 max-w-[1100px] mx-auto">
-              <div className="flex items-start gap-16">
+            <div className="p-6 sm:p-8 max-w-[1100px] mx-auto">
+              <div className="flex flex-col sm:flex-row sm:items-start gap-16">
                 <div className="flex-1">
                   <h1 className="text-2xl font-bold">{data.lesson.title}</h1>
                   <p className="mt-4 text-gray-200 leading-relaxed">
@@ -50,7 +50,7 @@ export const Video = ({ lessonSlug }: VideoProps) => {
                   </p>
 
                   {data.lesson.teacher && (
-                    <div className="flex items-center gap-4 mt-6">
+                    <div className="flex items-center gap-4 mt-10 md:mt-6">
                       <img
                         src={data.lesson.teacher.avatarURL}
                         alt={data.lesson.teacher.name}
@@ -68,10 +68,10 @@ export const Video = ({ lessonSlug }: VideoProps) => {
                     </div>
                   )}
                 </div>
-                <div className="flex flex-col gap-4">
+                <div className="flex flex-col xs:flex-row sm:flex-col flex-wrap justify-between gap-4">
                   <a
                     href="#"
-                    className="p-4 text-sm bg-green-500 flex items-center rounded font-bold uppercase gap-2 justify-center hover:bg-green-700 transition-colors"
+                    className="flex-1 p-4 text-sm bg-green-500 flex items-center rounded font-bold uppercase gap-2 justify-center hover:bg-green-700 transition-colors"
                   >
                     <DiscordLogo size={24} />
                     Join discord server
@@ -79,7 +79,7 @@ export const Video = ({ lessonSlug }: VideoProps) => {
 
                   <a
                     href="#"
-                    className="p-4 text-sm border border-blue-500 text-blue-500 flex items-center rounded font-bold uppercase gap-2 justify-center hover:bg-blue-500 hover:text-gray-900 transition-colors"
+                    className="flex-1 p-4 text-sm border border-blue-500 text-blue-500 flex items-center rounded font-bold uppercase gap-2 justify-center hover:bg-blue-500 hover:text-gray-900 transition-colors"
                   >
                     <Lightning size={24} />
                     Lesson challenge
@@ -87,40 +87,42 @@ export const Video = ({ lessonSlug }: VideoProps) => {
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-8 mt-20">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-8 mt-12 sm:mt-20">
                 <a
                   href="#"
-                  className="bg-gray-700 rounded overflow-hidden flex gap-6 hover:bg-gray-600 transition-colors"
+                  className="bg-gray-700 rounded overflow-hidden flex gap-6 hover:bg-gray-600 transition-colors pr-4 xs:pr-0"
                 >
                   <div className="bg-green-700 h-full p-6 flex items-center">
                     <FileArrowDown size={40} />
                   </div>
-                  <div className="py-6 leading-relaxed">
-                    <strong className="text-2xl">Lesson files</strong>
+                  <div className="py-6 leading-relaxed flex-1">
+                    <strong className="text-xl xs:text-2xl">
+                      Lesson files
+                    </strong>
                     <p className="text-sm text-gray-200 mt-2">
                       Get the documents and exercises from this lesson to
                       improve your knowledge
                     </p>
                   </div>
-                  <div className="h-full p-6 flex items-center">
+                  <div className="h-full p-6 hidden xs:flex items-center">
                     <CaretRight size={24} />
                   </div>
                 </a>
 
                 <a
                   href="#"
-                  className="bg-gray-700 rounded overflow-hidden flex gap-6 hover:bg-gray-600 transition-colors"
+                  className="bg-gray-700 rounded overflow-hidden flex gap-6 hover:bg-gray-600 transition-colors pr-4 xs:pr-0"
                 >
                   <div className="bg-green-700 h-full p-6 flex items-center">
                     <Image size={40} />
                   </div>
-                  <div className="py-6 leading-relaxed">
-                    <strong className="text-2xl">Wallpapers</strong>
+                  <div className="py-6 leading-relaxed flex-1">
+                    <strong className="text-xl xs:text-2xl">Wallpapers</strong>
                     <p className="text-sm text-gray-200 mt-2">
                       Download beautiful wallpapers to use wherever you want
                     </p>
                   </div>
-                  <div className="h-full p-6 flex items-center">
+                  <div className="h-full p-6 hidden xs:flex items-center">
                     <CaretRight size={24} />
                   </div>
                 </a>
