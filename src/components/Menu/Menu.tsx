@@ -20,7 +20,7 @@ export const Menu = ({ closeMenu, isMenuOpen }: MenuProps) => {
       <header className="flex p-5 justify-between items-center bg-gray-700 border-b border-gray-600">
         <Logo />
         <button onClick={closeMenu}>
-          <X size={30} color="#81D8F7" />
+          <X size={30} aria-label="close mobile menu" color="#81D8F7" />
         </button>
       </header>
 
