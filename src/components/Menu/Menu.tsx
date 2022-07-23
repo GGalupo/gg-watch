@@ -1,6 +1,7 @@
 import { X } from "phosphor-react";
 
-import { Logo } from "../Logo";
+import { Lesson, Logo } from "..";
+import { useGetLessonsQuery } from "../../graphql";
 
 interface MenuProps {
   isMenuOpen: boolean;
@@ -8,6 +9,8 @@ interface MenuProps {
 }
 
 export const Menu = ({ closeMenu, isMenuOpen }: MenuProps) => {
+  const { data } = useGetLessonsQuery();
+
   return (
     <div
       className={`w-full h-screen overflow-y-auto bg-gray-700 lg:hidden backdrop-blur-sm z-[9999] ${
@@ -20,6 +23,19 @@ export const Menu = ({ closeMenu, isMenuOpen }: MenuProps) => {
           <X size={30} color="#81D8F7" />
         </button>
       </header>
+
+      <div className="flex flex-col gap-8 p-6">
+        <h3 className="font-bold text-2xl">Lessons schedule</h3>
+        {data?.lessons.map((lesson) => (
+          <Lesson
+            key={lesson.slug}
+            title={lesson.title}
+            slug={lesson.slug}
+            availableAt={new Date(lesson.availableAt)}
+            type={lesson.lessonType}
+          />
+        ))}
+      </div>
     </div>
   );
 };
