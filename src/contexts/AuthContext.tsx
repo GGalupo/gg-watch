@@ -6,8 +6,8 @@ type User = {
 
 interface AuthContextData {
   user: User | null;
-  signInWithGitHub: () => void;
-  signOut: () => void;
+  signInWithGitHub: () => Promise<void>;
+  signOut: () => Promise<void>;
 }
 
 interface AuthContextProviderProps {
@@ -21,9 +21,9 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
 
   useEffect(() => {}, []);
 
-  const signInWithGitHub = () => {};
+  const signInWithGitHub = async () => {};
 
-  const signOut = () => {};
+  const signOut = async () => {};
 
   return (
     <AuthContext.Provider value={{ user, signInWithGitHub, signOut }}>
