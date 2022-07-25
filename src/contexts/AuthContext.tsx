@@ -1,5 +1,7 @@
 import { createContext, useEffect, useState, type ReactNode } from "react";
 
+import { supabaseClient } from "../lib";
+
 type User = {
   name: string;
 };
@@ -21,9 +23,26 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
 
   useEffect(() => {}, []);
 
-  const signInWithGitHub = async () => {};
+  const signInWithGitHub = async () => {
+    try {
+      await supabaseClient.auth.signIn({
+        provider: "github",
+      });
+    } catch (e) {
+      // TODO: better error handling
+      console.error(e);
+    }
+  };
 
-  const signOut = async () => {};
+  const signOut = async () => {
+    try {
+      await supabaseClient.auth.signOut();
+      setUser(null);
+    } catch (e) {
+      // TODO: better error handling
+      console.error(e);
+    }
+  };
 
   return (
     <AuthContext.Provider value={{ user, signInWithGitHub, signOut }}>
