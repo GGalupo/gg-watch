@@ -1,33 +1,35 @@
-import { type FormEvent, useState } from "react";
-import { useNavigate } from "react-router-dom";
+// import { type FormEvent, useState } from "react";
+// import { useNavigate } from "react-router-dom";
 
 import pageImage from "../../assets/subscribe-page-img.png";
-import { Logo } from "../../components";
-import { useCreateSubscriberMutation } from "../../graphql";
+import { GitHubIcon, Logo } from "../../components";
+// import { useCreateSubscriberMutation } from "../../graphql";
+import { useAuth } from "../../hooks";
 
 export const Subscribe = () => {
-  const [createSubscriber, { loading }] = useCreateSubscriberMutation();
-  const navigate = useNavigate();
+  // const [createSubscriber, { loading }] = useCreateSubscriberMutation();
+  // const navigate = useNavigate();
+  const { signInWithGitHub } = useAuth();
 
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  // const [name, setName] = useState("");
+  // const [email, setEmail] = useState("");
 
-  const handleSubscribe = async (event: FormEvent) => {
-    event.preventDefault();
+  // const handleSubscribe = async (event: FormEvent) => {
+  //   event.preventDefault();
 
-    try {
-      await createSubscriber({
-        variables: {
-          name,
-          email,
-        },
-      });
+  //   try {
+  //     await createSubscriber({
+  //       variables: {
+  //         name,
+  //         email,
+  //       },
+  //     });
 
-      navigate("/lessons");
-    } catch (e) {
-      console.error(e);
-    }
-  };
+  //     navigate("/lessons");
+  //   } catch (e) {
+  //     console.error(e);
+  //   }
+  // };
 
   return (
     <div className="min-h-screen bg-blur bg-cover bg-no-repeat flex flex-col items-center px-6">
@@ -47,9 +49,17 @@ export const Subscribe = () => {
         </div>
 
         <div className="p-8 bg-gray-700 border border-gray-500 rounded md:min-w-[380px]">
-          <strong className="text-2xl mb-5 block">Subscribe for free</strong>
+          <strong className="text-2xl mb-5 block">Watch for free</strong>
 
-          <form
+          <button
+            onClick={signInWithGitHub}
+            className="bg-gray-900 hover:bg-gray-800 transition-colors text-white font-medium flex items-center justify-center gap-3 rounded px-3 py-2 w-full h-16"
+          >
+            <GitHubIcon />
+            Sign in with GitHub
+          </button>
+
+          {/* <form
             onSubmit={handleSubscribe}
             className="flex flex-col gap-2 w-full"
           >
@@ -75,7 +85,7 @@ export const Subscribe = () => {
             >
               Subscribe now
             </button>
-          </form>
+          </form> */}
         </div>
       </div>
       <img src={pageImage} className="mt-10" />

@@ -24,24 +24,16 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
   useEffect(() => {}, []);
 
   const signInWithGitHub = async () => {
-    try {
-      await supabaseClient.auth.signIn({
-        provider: "github",
-      });
-    } catch (e) {
-      // TODO: better error handling
-      console.error(e);
-    }
+    const { user, session, error } = await supabaseClient.auth.signIn({
+      provider: "github",
+    });
+
+    console.log(user, session, error);
   };
 
   const signOut = async () => {
-    try {
-      await supabaseClient.auth.signOut();
-      setUser(null);
-    } catch (e) {
-      // TODO: better error handling
-      console.error(e);
-    }
+    await supabaseClient.auth.signOut();
+    setUser(null);
   };
 
   return (
