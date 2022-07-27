@@ -48,7 +48,7 @@ export const Subscribe = () => {
           </p>
         </div>
 
-        <div className="p-8 bg-gray-700 border border-gray-500 rounded md:min-w-[380px]">
+        <div className="p-8 bg-gray-700 border border-gray-500 rounded md:min-w-[380px] mt-6 md:mt-0">
           <strong className="text-2xl mb-5 block">Watch for free</strong>
 
           <button
