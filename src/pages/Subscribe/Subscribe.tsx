@@ -2,14 +2,14 @@
 // import { useNavigate } from "react-router-dom";
 
 import pageImage from "../../assets/subscribe-page-img.png";
-import { GitHubIcon, Logo } from "../../components";
+import { GitHubIcon, Logo, UserInfo } from "../../components";
 // import { useCreateSubscriberMutation } from "../../graphql";
 import { useAuth } from "../../hooks";
 
 export const Subscribe = () => {
   // const [createSubscriber, { loading }] = useCreateSubscriberMutation();
   // const navigate = useNavigate();
-  const { signInWithGitHub } = useAuth();
+  const { signInWithGitHub, user } = useAuth();
 
   // const [name, setName] = useState("");
   // const [email, setEmail] = useState("");
@@ -49,15 +49,23 @@ export const Subscribe = () => {
         </div>
 
         <div className="p-8 bg-gray-700 border border-gray-500 rounded md:min-w-[380px] mt-6 md:mt-0">
-          <strong className="text-2xl mb-5 block">Watch for free</strong>
-
-          <button
-            onClick={signInWithGitHub}
-            className="bg-gray-900 hover:bg-gray-800 transition-colors text-white font-medium flex items-center justify-center gap-3 rounded px-3 py-2 w-full h-16"
-          >
-            <GitHubIcon />
-            Sign in with GitHub
-          </button>
+          {user ? (
+            <>
+              <strong className="text-2xl mb-5 block">Welcome!</strong>
+              <UserInfo />
+            </>
+          ) : (
+            <>
+              <strong className="text-2xl mb-5 block">Watch for free</strong>
+              <button
+                onClick={signInWithGitHub}
+                className="bg-gray-900 hover:bg-gray-800 transition-colors text-white font-medium flex items-center justify-center gap-3 rounded px-3 py-2 w-full h-16"
+              >
+                <GitHubIcon />
+                Sign in with GitHub
+              </button>
+            </>
+          )}
 
           {/* <form
             onSubmit={handleSubscribe}
