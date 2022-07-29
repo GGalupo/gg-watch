@@ -1,13 +1,10 @@
 import { createContext, useEffect, useState, type ReactNode } from "react";
 
 import { supabaseClient } from "../lib";
-
-type User = {
-  name: string;
-};
+import type { User } from "../types";
 
 interface AuthContextData {
-  loadingAuth: boolean;
+  isLoadingAuth: boolean;
   user: User | null;
   signInWithGitHub: () => Promise<void>;
   signOut: () => Promise<void>;
@@ -20,35 +17,78 @@ interface AuthContextProviderProps {
 export const AuthContext = createContext({} as AuthContextData);
 
 export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
-  const [loadingAuth, setLoadingAuth] = useState(true);
+  const [isLoadingAuth, setIsLoadingAuth] = useState(true);
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
-    // TODO: onAuthStateChanged
-    const simulateLoading = async () => {
-      await new Promise((res) => setTimeout(res, 3000));
-      setLoadingAuth(false);
+    let mounted = true;
+    const getUserSession = async () => {
+      const session = supabaseClient.auth.session();
+
+      if (session) {
+        await new Promise((res) => setTimeout(res, 400));
+
+        setUser({
+          name: session.user?.user_metadata.name || "",
+          email: session.user?.email || "",
+          imageURL: session.user?.user_metadata.avatar_url || "",
+        });
+      }
+
+      setIsLoadingAuth(false);
+
+      return () => {
+        mounted = false;
+      };
     };
 
-    simulateLoading();
+    getUserSession();
+  }, []);
+
+  useEffect(() => {
+    const { data } = supabaseClient.auth.onAuthStateChange((event, session) => {
+      if (event === "SIGNED_IN") {
+        setUser({
+          name: session?.user?.user_metadata.name || "",
+          email: session?.user?.email || "",
+          imageURL: session?.user?.user_metadata.avatar_url || "",
+        });
+      }
+    });
+
+    return () => {
+      if (data) {
+        data.unsubscribe();
+      }
+    };
   }, []);
 
   const signInWithGitHub = async () => {
-    const { user, session, error } = await supabaseClient.auth.signIn({
-      provider: "github",
-    });
+    try {
+      const { error } = await supabaseClient.auth.signIn({
+        provider: "github",
+      });
 
-    console.log(user, session, error);
+      if (error) {
+        throw new Error(error.message);
+      }
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   const signOut = async () => {
-    await supabaseClient.auth.signOut();
-    setUser(null);
+    try {
+      await supabaseClient.auth.signOut();
+      setUser(null);
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   return (
     <AuthContext.Provider
-      value={{ loadingAuth, user, signInWithGitHub, signOut }}
+      value={{ isLoadingAuth, user, signInWithGitHub, signOut }}
     >
       {children}
     </AuthContext.Provider>
