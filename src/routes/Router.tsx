@@ -4,6 +4,8 @@ import { Logo, ReactIcon } from "../components";
 import { useAuth } from "../hooks";
 import { Event, Subscribe } from "../pages";
 
+import { PrivateRoute } from "./PrivateRoute";
+
 export const Router = () => {
   const { isLoadingAuth } = useAuth();
 
@@ -18,8 +20,22 @@ export const Router = () => {
   return (
     <Routes>
       <Route path="/" element={<Subscribe />} />
-      <Route path="/lessons" element={<Event />} />
-      <Route path="/lessons/:slug" element={<Event />} />
+      <Route
+        path="/lessons"
+        element={
+          <PrivateRoute>
+            <Event />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/lessons/:slug"
+        element={
+          <PrivateRoute>
+            <Event />
+          </PrivateRoute>
+        }
+      />
     </Routes>
   );
 };
