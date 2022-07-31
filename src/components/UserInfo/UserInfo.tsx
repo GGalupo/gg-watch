@@ -1,18 +1,20 @@
 import { Link } from "react-router-dom";
 
 import { useAuth } from "../../hooks";
+import { useSignOut } from "../../hooks/useSignOut";
 
 interface UserInfoProps {
-  isLessonsPages?: boolean;
+  page: "home" | "menu" | "lessons";
 }
 
-export const UserInfo = ({ isLessonsPages }: UserInfoProps) => {
-  const { user, signOut } = useAuth();
+export const UserInfo = ({ page }: UserInfoProps) => {
+  const { user } = useAuth();
+  const { signOut } = useSignOut();
 
   return (
     <div
       className={`items-center gap-4 ${
-        isLessonsPages ? "hidden lg:flex" : "flex"
+        page === "lessons" ? "hidden lg:flex" : "flex"
       }`}
     >
       <img
@@ -25,9 +27,11 @@ export const UserInfo = ({ isLessonsPages }: UserInfoProps) => {
         <span className="text-sm">{user?.email}</span>
 
         <div
-          className={`flex items-center gap-4 ${isLessonsPages ? "" : "mt-2"}`}
+          className={`flex items-center gap-4 ${
+            page === "lessons" ? "" : "mt-2"
+          }`}
         >
-          {!isLessonsPages && (
+          {page === "home" && (
             <Link
               to="/lessons"
               className="text-blue-500 font-medium hover:font-bold"
@@ -38,7 +42,7 @@ export const UserInfo = ({ isLessonsPages }: UserInfoProps) => {
           <button
             onClick={signOut}
             className={`text-red-400  font-medium hover:font-bold ${
-              isLessonsPages ? "self-start mt-1" : ""
+              page === "lessons" ? "self-start mt-1" : ""
             }`}
           >
             Logout

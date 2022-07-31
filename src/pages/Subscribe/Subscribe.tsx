@@ -52,7 +52,7 @@ export const Subscribe = () => {
           {user ? (
             <>
               <strong className="text-2xl mb-5 block">Welcome!</strong>
-              <UserInfo />
+              <UserInfo page="home" />
             </>
           ) : (
             <>
