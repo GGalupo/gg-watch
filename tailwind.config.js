@@ -12,6 +12,9 @@ module.exports = {
       ...defaultTheme.screens,
     },
     extend: {
+      animation: {
+        'spin-slow': 'spin 2.5s linear infinite'
+      },
       backgroundImage: {
         blur: 'url(/src/assets/blur-background.png)'
       },

@@ -1,6 +1,6 @@
 import { List } from "phosphor-react";
 
-import { Logo } from "..";
+import { Logo, UserInfo } from "..";
 
 interface HeaderProps {
   toggleMenu: () => void;
@@ -8,8 +8,9 @@ interface HeaderProps {
 
 export const Header = ({ toggleMenu }: HeaderProps) => {
   return (
-    <header className="flex p-5 justify-between lg:justify-center items-center bg-gray-700 border-b border-gray-600">
+    <header className="flex h-24 p-5 justify-between items-center bg-gray-700 border-b border-gray-600">
       <Logo />
+      <UserInfo page="lessons" />
       <div className="flex items-center gap-4 lg:hidden">
         <span className="text-[0.6rem] font-medium text-blue-500">LESSONS</span>
         <button onClick={toggleMenu}>
