@@ -51,12 +51,16 @@ export const Subscribe = () => {
         <div className="p-8 bg-gray-700 border border-gray-500 rounded md:min-w-[380px] mt-6 md:mt-0">
           {user ? (
             <>
-              <strong className="text-2xl mb-5 block">Welcome!</strong>
+              <strong className="text-2xl mb-6 block">Welcome!</strong>
               <UserInfo page="home" />
             </>
           ) : (
             <>
-              <strong className="text-2xl mb-5 block">Watch for free</strong>
+              <strong className="text-2xl mb-3 block">Watch for free</strong>
+              <p className="mb-4 text-gray-100">
+                Login with your GitHub account to watch the lessons which have
+                been already released.
+              </p>
               <button
                 onClick={signInWithGitHub}
                 className="bg-gray-900 hover:bg-gray-800 transition-colors text-white font-medium flex items-center justify-center gap-3 rounded px-3 py-2 w-full h-16"
