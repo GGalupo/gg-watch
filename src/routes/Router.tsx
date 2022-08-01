@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom";
 
 import { Logo, ReactIcon } from "../components";
 import { useAuth } from "../hooks";
-import { Event, Subscribe } from "../pages";
+import { Event, NotFound, Subscribe } from "../pages";
 
 import { PrivateRoute } from "./PrivateRoute";
 
@@ -36,6 +36,7 @@ export const Router = () => {
           </PrivateRoute>
         }
       />
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 };
