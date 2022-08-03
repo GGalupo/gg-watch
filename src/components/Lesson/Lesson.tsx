@@ -3,25 +3,21 @@ import { isPast, format } from "date-fns";
 import { Link, useParams } from "react-router-dom";
 import classNames from "classnames";
 
+import type { Lesson as ILesson } from "../../types";
+
 interface LessonProps {
-  title: string;
-  slug: string;
-  availableAt: Date;
-  type: "live" | "class";
+  lesson: ILesson;
 }
 
-export const Lesson = ({
-  title,
-  slug: lessonSlug,
-  availableAt,
-  type,
-}: LessonProps) => {
+export const Lesson = ({ lesson }: LessonProps) => {
   const { slug } = useParams<{ slug: string }>();
+  const { availableAt, slug: lessonSlug, title, lessonType } = lesson;
   const isActiveLesson = slug === lessonSlug;
 
-  const isLessonAvailable = isPast(availableAt);
+  const availableDate = new Date(availableAt);
+  const isLessonAvailable = isPast(availableDate);
   const availableDateFormatted = format(
-    availableAt,
+    availableDate,
     "EEEE' • 'MMM do', 'yyyy' • 'p"
   );
 
@@ -58,7 +54,7 @@ export const Lesson = ({
             </span>
           )}
 
-          {type === "live" && (
+          {lessonType === "live" && (
             <span
               className={classNames(
                 "text-xs rounded px-2 py-[0.125rem] text-white border font-bold",
