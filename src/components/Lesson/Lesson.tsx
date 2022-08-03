@@ -5,11 +5,7 @@ import classNames from "classnames";
 
 import type { Lesson as ILesson } from "../../types";
 
-interface LessonProps {
-  lesson: ILesson;
-}
-
-export const Lesson = ({ lesson }: LessonProps) => {
+export const Lesson = (lesson: ILesson) => {
   const { slug } = useParams<{ slug: string }>();
   const { availableAt, slug: lessonSlug, title, lessonType } = lesson;
   const isActiveLesson = slug === lessonSlug;
