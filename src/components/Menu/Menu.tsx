@@ -28,13 +28,7 @@ export const Menu = ({ closeMenu, isMenuOpen }: MenuProps) => {
         <UserInfo page="menu" />
         <h3 className="font-bold text-2xl">Lessons schedule</h3>
         {data?.lessons.map((lesson) => (
-          <Lesson
-            key={lesson.slug}
-            title={lesson.title}
-            slug={lesson.slug}
-            availableAt={new Date(lesson.availableAt)}
-            type={lesson.lessonType}
-          />
+          <Lesson key={lesson.slug} {...lesson} />
         ))}
       </div>
     </div>
