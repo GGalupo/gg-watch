@@ -1224,7 +1224,7 @@ export type ImageTransformationInput = {
 
 export type Lesson = Node & {
   __typename?: 'Lesson';
-  availableAt?: Maybe<Scalars['DateTime']>;
+  availableAt: Scalars['DateTime'];
   challenge?: Maybe<Challenge>;
   /** The time the document was created */
   createdAt: Scalars['DateTime'];
@@ -1324,7 +1324,7 @@ export type LessonConnection = {
 };
 
 export type LessonCreateInput = {
-  availableAt?: InputMaybe<Scalars['DateTime']>;
+  availableAt: Scalars['DateTime'];
   challenge?: InputMaybe<ChallengeCreateOneInlineInput>;
   createdAt?: InputMaybe<Scalars['DateTime']>;
   description?: InputMaybe<Scalars['String']>;
@@ -5586,7 +5586,7 @@ export type GetLessonBySlugQuery = { __typename?: 'Query', lesson?: { __typename
 export type GetLessonsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetLessonsQuery = { __typename?: 'Query', lessons: Array<{ __typename?: 'Lesson', id: string, availableAt?: any | null, lessonType: LessonType, title: string, slug: string }> };
+export type GetLessonsQuery = { __typename?: 'Query', lessons: Array<{ __typename?: 'Lesson', id: string, availableAt: any, lessonType: LessonType, title: string, slug: string }> };
 
 
 export const CreateSubscriberDocument = gql`
