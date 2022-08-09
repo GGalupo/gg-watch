@@ -25,7 +25,11 @@ export const Event = () => {
       <Header toggleMenu={toggleMenu} />
       <Menu isMenuOpen={isMenuOpen} closeMenu={() => setIsMenuOpen(false)} />
       <main className="flex flex-1">
-        {slug ? <Video lessonSlug={slug} /> : <div className="flex-1" />}
+        {slug ? (
+          <Video key={slug} lessonSlug={slug} />
+        ) : (
+          <div className="flex-1" />
+        )}
         <Sidebar />
       </main>
     </div>
