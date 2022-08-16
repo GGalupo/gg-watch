@@ -1,4 +1,5 @@
 import { List } from "phosphor-react";
+import { Link } from "react-router-dom";
 
 import { Logo, UserInfo } from "..";
 
@@ -9,7 +10,9 @@ interface HeaderProps {
 export const Header = ({ toggleMenu }: HeaderProps) => {
   return (
     <header className="flex h-24 p-5 justify-between items-center bg-gray-700 border-b border-gray-600">
-      <Logo />
+      <Link to="/lessons">
+        <Logo />
+      </Link>
       <UserInfo page="lessons" />
       <div className="flex items-center gap-4 lg:hidden">
         <span className="text-[0.6rem] font-medium text-blue-500">LESSONS</span>
